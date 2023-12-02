@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@formkit/nuxt"],
+  modules: ["@formkit/nuxt", "@vueuse/nuxt"],
   formkit: {
     autoImport: true,
   },
@@ -10,6 +10,11 @@ export default defineNuxtConfig({
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
+    },
+  },
+  runtimeConfig: {
+    public: {
+      baseURL: process.env.BASE_URL,
     },
   },
 });
