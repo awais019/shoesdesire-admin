@@ -1,4 +1,5 @@
 import useUserStore from "~/stores/user";
+import type { Category } from "~/types/category";
 
 export const useCategory = () => {
   const { baseURL } = useRuntimeConfig().public;
@@ -14,5 +15,20 @@ export const useCategory = () => {
       baseURL,
     });
   }
-  return { create };
+
+  function getAll() {
+    const { token } = useUserStore();
+    return useFetch<{
+      data: Category[];
+      message: string;
+    }>("/categories", {
+      method: "GET",
+      baseURL,
+      headers: {
+        "x-auth-token": token,
+      },
+    });
+  }
+
+  return { create, getAll };
 };
