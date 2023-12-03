@@ -16,6 +16,9 @@ export default {
         gainsboro: "#dddddd",
         onyx: "#38383f",
         eucalyptus: "#4ce1b6",
+        gray: "#999999",
+        light_azure: "#70bbfd",
+        azure: "#3ea3fc",
       },
       boxShadow: {
         header: "rgba(0, 0, 0, 0.05) 0px 2px 15px 0px",

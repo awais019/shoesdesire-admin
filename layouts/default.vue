@@ -26,7 +26,7 @@
         </div>
       </div>
     </header>
-    <main class="flex">
+    <div class="flex">
       <aside class="basis-1/5 bg-dark_gunmetal shadow-sidebar px-2 py-4">
         <nav>
           <ul class="flex flex-col gap-2">
@@ -51,8 +51,10 @@
           </ul>
         </nav>
       </aside>
-      <slot />
-    </main>
+      <main class="py-4 px-3 basis-4/5">
+        <slot />
+      </main>
+    </div>
   </div>
 </template>
 

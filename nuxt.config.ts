@@ -7,9 +7,6 @@ export default defineNuxtConfig({
     "@pinia/nuxt",
     "@pinia-plugin-persistedstate/nuxt",
   ],
-  formkit: {
-    autoImport: true,
-  },
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
