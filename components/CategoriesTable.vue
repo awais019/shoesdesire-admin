@@ -8,7 +8,7 @@
       class="border-collapse border-platinum caption-bottom w-full align-top text-left table-fixed"
     >
       <thead>
-        <tr class="border-solid border-b border-onyx">
+        <tr class="border-solid border-b border-flash_white">
           <th class="py-2">Image</th>
           <th class="py-2">Name</th>
           <th class="py-2">Slug</th>
@@ -20,7 +20,7 @@
       <tbody>
         <tr v-for="category in data.data" :key="category.id">
           <td class="py-2">
-            <div class="border border-onyx p-0.5 w-10 h-10">
+            <div class="border border-anti_flash_white p-0.5 w-10 h-10">
               <img
                 :src="category.imageUrl"
                 :alt="category.name"

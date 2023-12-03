@@ -11,10 +11,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        dark_gunmetal: "#232329",
-        charleston_green: "#2A2A31",
-        gainsboro: "#dddddd",
-        onyx: "#38383f",
+        anti_flash_white: "#f2f4f7",
+        flash_white: "#EFF1F5",
+        dim_gray: "#646777",
         eucalyptus: "#4ce1b6",
         gray: "#999999",
         light_azure: "#70bbfd",
@@ -24,6 +23,7 @@ export default {
       boxShadow: {
         header: "rgba(0, 0, 0, 0.05) 0px 2px 15px 0px",
         sidebar: "rgba(0, 0, 0, 0.11) 0px 1px 30px 1px",
+        block: "rgba(0, 0, 0, 0.06) 0px 10px 30px 1px",
       },
     },
   },

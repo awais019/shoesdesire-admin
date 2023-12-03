@@ -6,7 +6,7 @@
   <div>
     <h1 class="text-2xl font-medium">Categories</h1>
     <p class="text-gray text-sm">Create and manage product categories</p>
-    <div class="my-8 bg-dark_gunmetal p-6 rounded-md">
+    <div class="my-8 bg-white p-6 rounded-md shadow-block">
       <div class="flex justify-between items-center mb-8">
         <h2 class="text-sm font-bold uppercase">Category List</h2>
         <button

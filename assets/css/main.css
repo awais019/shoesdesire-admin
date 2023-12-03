@@ -5,6 +5,6 @@
 @tailwind utilities;
 
 body {
-  @apply bg-charleston_green text-gainsboro;
+  @apply bg-anti_flash_white text-dim_gray;
   font-family: "Roboto", sans-serif;
 }
