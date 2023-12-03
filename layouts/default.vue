@@ -48,6 +48,24 @@
                 Products
               </nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                to="/sizes"
+                class="py-4 px-2 flex gap-1 items-center hover:border-l hover:border-eucalyptus"
+              >
+                <IconsSize class="w-6 h-6" />
+                Sizes
+              </nuxt-link>
+            </li>
+            <li>
+              <nuxt-link
+                to="/colors"
+                class="py-4 px-2 flex gap-1 items-center hover:border-l hover:border-eucalyptus"
+              >
+                <IconsColor class="w-6 h-6" />
+                Colors
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </aside>
