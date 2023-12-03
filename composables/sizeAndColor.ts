@@ -34,8 +34,42 @@ export const useSizeColor = () => {
     });
   }
 
+  function createColor(name: string, hex: string) {
+    const { token } = useUserStore();
+    return useFetch("/color", {
+      method: "POST",
+      body: {
+        name,
+        hex,
+      },
+      headers: {
+        "x-auth-token": token,
+      },
+      baseURL,
+    });
+  }
+
+  function getAllColors() {
+    const { token } = useUserStore();
+    return useFetch<{
+      data: {
+        id: string;
+        name: string;
+        hex: string;
+      }[];
+      message: string;
+    }>("/color", {
+      method: "GET",
+      headers: {
+        "x-auth-token": token,
+      },
+      baseURL,
+    });
+  }
+
   return {
     createSize,
     getAllSizes,
+    createColor,
   };
 };
