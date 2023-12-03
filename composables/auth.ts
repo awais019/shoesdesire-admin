@@ -1,7 +1,10 @@
+import useUserStore from "~/stores/user";
+import type { User } from "~/types/user";
+
 export const useAuth = () => {
   const { baseURL } = useRuntimeConfig().public;
 
-  async function signin(email: string, password: string) {
+  function signin(email: string, password: string) {
     return useFetch<{
       data: {
         token: string;
@@ -16,7 +19,23 @@ export const useAuth = () => {
     });
   }
 
+  function me() {
+    const { token } = useUserStore();
+
+    return useFetch<{
+      data: User;
+      message: string;
+    }>("/auth/me", {
+      method: "GET",
+      headers: {
+        "x-auth-token": token,
+      },
+      baseURL,
+    });
+  }
+
   return {
     signin,
+    me,
   };
 };
