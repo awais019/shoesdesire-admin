@@ -17,7 +17,25 @@ export const useSizeColor = () => {
     });
   }
 
+  function getAllSizes() {
+    const { token } = useUserStore();
+    return useFetch<{
+      data: {
+        id: string;
+        size: number;
+      }[];
+      message: string;
+    }>("/size", {
+      method: "GET",
+      headers: {
+        "x-auth-token": token,
+      },
+      baseURL,
+    });
+  }
+
   return {
     createSize,
+    getAllSizes,
   };
 };

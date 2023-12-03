@@ -16,7 +16,7 @@
           Add new Size
         </button>
       </div>
-      <CategoriesTable />
+      <SizesTable />
     </div>
   </div>
   <teleport to="body">

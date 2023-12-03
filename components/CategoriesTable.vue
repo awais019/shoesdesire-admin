@@ -1,5 +1,5 @@
 <script setup lang="ts">
-  const { data, error } = await useCategory().getAll();
+  const { data } = await useCategory().getAll();
 </script>
 
 <template>
@@ -18,7 +18,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr v-for="category in data.data" :key="category.id">
+        <tr
+          v-for="category in data.data"
+          :key="category.id"
+          class="border-b border-flash_white"
+        >
           <td class="py-2">
             <div class="border border-anti_flash_white p-0.5 w-10 h-10">
               <img
