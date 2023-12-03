@@ -20,7 +20,7 @@
   </div>
   <teleport to="body">
     <SharedModal :controller="controller">
-      <CategoryForm />
+      <CategoryForm @close="controller.close" />
     </SharedModal>
   </teleport>
 </template>
