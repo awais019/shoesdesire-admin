@@ -71,5 +71,6 @@ export const useSizeColor = () => {
     createSize,
     getAllSizes,
     createColor,
+    getAllColors,
   };
 };

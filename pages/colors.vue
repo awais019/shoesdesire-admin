@@ -16,7 +16,7 @@
           Add new Color
         </button>
       </div>
-      <SizesTable />
+      <ColorsTable />
     </div>
   </div>
   <teleport to="body">
