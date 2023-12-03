@@ -12,6 +12,14 @@ export default {
     extend: {
       colors: {
         dark_gunmetal: "#232329",
+        charleston_green: "#2A2A31",
+        gainsboro: "#dddddd",
+        onyx: "#38383f",
+        eucalyptus: "#4ce1b6",
+      },
+      boxShadow: {
+        header: "rgba(0, 0, 0, 0.05) 0px 2px 15px 0px",
+        sidebar: "rgba(0, 0, 0, 0.11) 0px 1px 30px 1px",
       },
     },
   },
