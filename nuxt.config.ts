@@ -1,7 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ["@formkit/nuxt", "@vueuse/nuxt"],
+  modules: [
+    "@formkit/nuxt",
+    "@vueuse/nuxt",
+    "@pinia/nuxt",
+    "@pinia-plugin-persistedstate/nuxt",
+  ],
   formkit: {
     autoImport: true,
   },

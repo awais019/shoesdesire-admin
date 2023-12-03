@@ -1,12 +1,15 @@
 <script lang="ts" setup>
+  import useUserStore from "~/stores/user";
+
   definePageMeta({
     layout: false,
+    middleware: ["signin"],
   });
 
   const email = ref("");
   const password = ref("");
 
-  const { signin } = useAuth();
+  const { signin } = useUserStore();
 
   function handleSubmit() {
     signin(email.value, password.value);
