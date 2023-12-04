@@ -11,6 +11,10 @@
   } from "@headlessui/vue";
   import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
+  const emits = defineEmits<{
+    (e: "selected", categories: Category[]): void;
+  }>();
+
   const { data } = await useCategory().getAll();
 
   const categories = data.value?.data || [];
@@ -42,6 +46,7 @@
 
   watch(selected, () => {
     if (selected.value) selectedCategories.value.push(selected.value);
+    emits("selected", selectedCategories.value);
   });
 </script>
 

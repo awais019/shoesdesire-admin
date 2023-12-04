@@ -10,6 +10,16 @@
   } from "@headlessui/vue";
   import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
+  const emits = defineEmits<{
+    (
+      e: "selected",
+      sizes: {
+        id: string;
+        size: number;
+      }[]
+    ): void;
+  }>();
+
   const { data } = await useSizeColor().getAllSizes();
 
   const sizes = data.value?.data || [];
@@ -38,6 +48,7 @@
 
   watch(selected, () => {
     if (selected.value) selectedSizes.value.push(selected.value);
+    emits("selected", selectedSizes.value);
   });
 </script>
 

@@ -1,23 +1,34 @@
 <script setup lang="ts">
-  const { create } = useCategory();
+  import type { Category } from "~/types/category";
 
   const emits = defineEmits<{
     (e: "close"): void;
   }>();
 
+  const { create } = useProduct();
+
   const noOfImages = ref(1);
 
+  const selectedCategories = ref<Category[]>([]);
+  const selectedSizes = ref<{ id: string; size: number }[]>([]);
+  const selectedColors = ref<{ id: string; name: string; hex: string }[]>([]);
+
   async function handleSubmit(values: any) {
+    values.categories = selectedCategories.value.map((category) => category.id);
+    values.sizes = selectedSizes.value.map((size) => size.id);
+    values.colors = selectedColors.value.map((color) => color.id);
+
     const body = new FormData();
     for (const key in values) {
-      if (key === "image") {
+      if (key.includes("image")) {
         body.append(key, values[key][0].file);
+      } else if (key === "categories" || key === "sizes" || key === "colors") {
+        body.append(key, JSON.stringify(values[key]));
       } else {
         body.append(key, values[key]);
       }
     }
-
-    const { data } = create(body);
+    const { data } = await create(body);
 
     if (data.value) {
       emits("close");
@@ -98,17 +109,21 @@
         <label for="categories" class="block mb-2 font-medium"
           >Categories</label
         >
-        <CategoriesAutoComplete />
+        <CategoriesAutoComplete
+          @selected="(_categories) => (selectedCategories = _categories)"
+        />
       </div>
     </div>
     <div class="flex gap-4 mt-8 mb-4">
       <div class="grow">
         <label for="sizes" class="block mb-2 font-medium">Sizes</label>
-        <SizesAutoComplete />
+        <SizesAutoComplete @selected="(_sizes) => (selectedSizes = _sizes)" />
       </div>
       <div class="grow">
         <label for="colors" class="block mb-2 font-medium">Colors</label>
-        <ColorsAutoComplete />
+        <ColorsAutoComplete
+          @selected="(_colors) => (selectedColors = _colors)"
+        />
       </div>
     </div>
     <div class="flex gap-2 flex-col">
@@ -137,7 +152,7 @@
     </button>
     <FormKit
       type="submit"
-      outer-class="mt-8 text-white bg-light_azure hover:bg-azure p-2 text-center mx-60 rounded-md"
+      outer-class="mt-8 text-white bg-light_azure hover:bg-azure p-2 text-center rounded-md"
       input-class="font-bold text-xl"
     />
   </FormKit>
