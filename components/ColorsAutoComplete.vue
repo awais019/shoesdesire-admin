@@ -10,34 +10,37 @@
   } from "@headlessui/vue";
   import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
-  const { data } = await useSizeColor().getAllSizes();
+  const { data } = await useSizeColor().getAllColors();
 
-  const sizes = data.value?.data || [];
+  const colors = data.value?.data || [];
 
-  let selected = ref<{
+  const selected = ref<{
     id: string;
-    size: number;
+    name: string;
+    hex: string;
   } | null>(null);
 
-  const selectedSizes = ref<{ id: string; size: number }[]>([]);
+  const selectedColors = ref<{ id: string; name: string; hex: string }[]>([]);
 
   let query = ref("");
 
-  let filteredSizes = computed(() =>
+  let filteredColors = computed(() =>
     query.value === ""
-      ? sizes
-      : sizes.filter((size) => size.size == parseInt(query.value))
+      ? colors
+      : colors.filter(
+          (color) => color.name == query.value.toLowerCase().replace(/\s+/g, "")
+        )
   );
 
   const values = computed(() => {
-    return selectedSizes.value.reduce((acc, size, index) => {
-      if (index == selectedSizes.value.length - 1) return acc + size.size;
-      return acc + size.size + ", ";
+    return selectedColors.value.reduce((acc, color, index) => {
+      if (index == selectedColors.value.length - 1) return acc + color.name;
+      return acc + color.name + ", ";
     }, "");
   });
 
   watch(selected, () => {
-    if (selected.value) selectedSizes.value.push(selected.value);
+    if (selected.value) selectedColors.value.push(selected.value);
   });
 </script>
 
@@ -50,9 +53,9 @@
         >
           <ComboboxInput
             class="w-full border-none focus:ring-0 bg-anti_flash_white"
-            id="sizes"
+            id="colors"
             @change="query = $event.target.value"
-            :display-value="() => values || 'Select a size'"
+            :display-value="() => values || 'Select a color'"
           >
           </ComboboxInput>
           <ComboboxButton
@@ -74,17 +77,17 @@
             class="absolute mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
           >
             <div
-              v-if="filteredSizes.length === 0 && query !== ''"
+              v-if="filteredColors.length === 0 && query !== ''"
               class="relative cursor-default select-none px-4 py-2 text-gray-700"
             >
               Nothing found.
             </div>
 
             <ComboboxOption
-              v-for="size in filteredSizes"
+              v-for="color in filteredColors"
               as="template"
-              :key="size.id"
-              :value="size"
+              :key="color.id"
+              :value="color"
               v-slot="{ selected, active }"
             >
               <li
@@ -95,10 +98,14 @@
                 }"
               >
                 <span
-                  class="block truncate"
+                  class="truncate flex gap-2 capitalize"
                   :class="{ 'font-medium': selected, 'font-normal': !selected }"
                 >
-                  {{ size.size }}
+                  <span
+                    class="w-4 h-4 block rounded-full"
+                    :style="{ backgroundColor: color.hex }"
+                  ></span>
+                  {{ color.name }}
                 </span>
                 <span
                   v-if="selected"

@@ -15,7 +15,7 @@
 
   const categories = data.value?.data || [];
 
-  let selected = ref(categories[0]);
+  const selected = ref<Category | null>(null);
 
   const selectedCategories = ref<Category[]>([]);
 
@@ -41,7 +41,7 @@
   });
 
   watch(selected, () => {
-    selectedCategories.value.push(selected.value);
+    if (selected.value) selectedCategories.value.push(selected.value);
   });
 </script>
 
@@ -75,7 +75,7 @@
           @after-leave="query = ''"
         >
           <ComboboxOptions
-            class="absolute mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
+            class="absolute mt-1 max-h-48 z-10 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
           >
             <div
               v-if="filteredCategories.length === 0 && query !== ''"

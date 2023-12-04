@@ -104,6 +104,10 @@
         <label for="sizes" class="block mb-2 font-medium">Sizes</label>
         <SizesAutoComplete />
       </div>
+      <div class="grow">
+        <label for="colors" class="block mb-2 font-medium">Colors</label>
+        <ColorsAutoComplete />
+      </div>
     </div>
     <FormKit
       type="file"
