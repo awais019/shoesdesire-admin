@@ -16,7 +16,7 @@
           Add new product
         </button>
       </div>
-      <CategoriesTable />
+      <ProductsTable />
     </div>
   </div>
   <teleport to="body">
