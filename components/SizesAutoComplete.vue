@@ -11,32 +11,26 @@
   } from "@headlessui/vue";
   import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
-  const { data } = await useCategory().getAll();
+  const { data } = await useSizeColor().getAllSizes();
 
-  const categories = data.value?.data || [];
+  const sizes = data.value?.data || [];
 
-  let selected = ref(categories[0]);
+  let selected = ref(sizes[0]);
 
-  const selectedCategories = ref<Category[]>([]);
+  const selectedCategories = ref<{ id: string; size: number }[]>([]);
 
   let query = ref("");
 
-  let filteredCategories = computed(() =>
+  let filteredSizes = computed(() =>
     query.value === ""
-      ? categories
-      : categories.filter((category) =>
-          category.name
-            .toLowerCase()
-            .replace(/\s+/g, "")
-            .includes(query.value.toLowerCase().replace(/\s+/g, ""))
-        )
+      ? sizes
+      : sizes.filter((size) => size.size == parseInt(query.value))
   );
 
   const values = computed(() => {
-    return selectedCategories.value.reduce((acc, category, index) => {
-      if (index == selectedCategories.value.length - 1)
-        return acc + category.name;
-      return acc + category.name + ", ";
+    return selectedCategories.value.reduce((acc, size, index) => {
+      if (index == selectedCategories.value.length - 1) return acc + size.size;
+      return acc + size.size + ", ";
     }, "");
   });
 
@@ -56,7 +50,7 @@
             class="w-full border-none focus:ring-0 bg-anti_flash_white"
             id="categories"
             @change="query = $event.target.value"
-            :display-value="() => values || 'Select a category'"
+            :display-value="() => values || 'Select a size'"
           >
           </ComboboxInput>
           <ComboboxButton
@@ -78,17 +72,17 @@
             class="absolute mt-1 max-h-48 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm"
           >
             <div
-              v-if="filteredCategories.length === 0 && query !== ''"
+              v-if="filteredSizes.length === 0 && query !== ''"
               class="relative cursor-default select-none px-4 py-2 text-gray-700"
             >
               Nothing found.
             </div>
 
             <ComboboxOption
-              v-for="category in filteredCategories"
+              v-for="size in filteredSizes"
               as="template"
-              :key="category.id"
-              :value="category"
+              :key="size.id"
+              :value="size"
               v-slot="{ selected, active }"
             >
               <li
@@ -102,7 +96,7 @@
                   class="block truncate"
                   :class="{ 'font-medium': selected, 'font-normal': !selected }"
                 >
-                  {{ category.name }}
+                  {{ size.size }}
                 </span>
                 <span
                   v-if="selected"

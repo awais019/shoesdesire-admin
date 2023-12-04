@@ -99,6 +99,12 @@
         <CategoriesAutoComplete />
       </div>
     </div>
+    <div class="flex gap-4 mt-8 mb-4">
+      <div class="grow">
+        <label for="sizes" class="block mb-2 font-medium">Sizes</label>
+        <SizesAutoComplete />
+      </div>
+    </div>
     <FormKit
       type="file"
       name="image"
