@@ -34,7 +34,7 @@
           </td>
           <td class="py-2">{{ category.name }}</td>
           <td class="py-2">{{ category.slug }}</td>
-          <td class="py-2">{{ category.description }}</td>
+          <td class="py-2 truncate">{{ category.description }}</td>
           <td class="py-2">{{ category.productsCount }}</td>
           <td class="py-2 flex gap-2">
             <button
