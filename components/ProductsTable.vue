@@ -35,7 +35,7 @@
           </td>
           <td class="py-2">{{ product.name }}</td>
           <td class="py-2">{{ product.slug }}</td>
-          <td class="py-2">{{ product.description }}</td>
+          <td class="py-2 truncate">{{ product.description }}</td>
           <td class="py-2">{{ product.price }}</td>
           <td class="py-2">{{ product.stock }}</td>
           <td class="py-2 flex gap-2">
