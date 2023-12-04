@@ -5,6 +5,8 @@
     (e: "close"): void;
   }>();
 
+  const noOfImages = ref(1);
+
   async function handleSubmit(values: any) {
     const body = new FormData();
     for (const key in values) {
@@ -109,20 +111,30 @@
         <ColorsAutoComplete />
       </div>
     </div>
-    <FormKit
-      type="file"
-      name="image"
-      label="Image"
-      accept="image/x-png,image/gif,image/jpeg"
-      message-class="text-red-400 text-sm"
-      label-class="block mb-2 font-medium"
-      file-name-class="hidden"
-      file-remove-class="text-red-400"
-      validation="required"
-      :validation-messages="{
-        required: 'The image field is required',
-      }"
-    />
+    <div class="flex gap-2 flex-col">
+      <FormKit
+        v-for="index in noOfImages"
+        :key="index"
+        type="file"
+        :name="`image${index}`"
+        :label="`Image${index}`"
+        accept="image/x-png,image/gif,image/jpeg"
+        message-class="text-red-400 text-sm"
+        label-class="block mb-2 font-medium"
+        file-name-class="hidden"
+        file-remove-class="text-red-400"
+        validation="required"
+        :validation-messages="{
+          required: 'The image field is required',
+        }"
+      />
+    </div>
+    <button
+      @click.prevent="noOfImages++"
+      class="bg-anti_flash_white w-6 font-bold h-6 block mt-2 rounded-full"
+    >
+      +
+    </button>
     <FormKit
       type="submit"
       outer-class="mt-8 text-white bg-light_azure hover:bg-azure p-2 text-center mx-60 rounded-md"
