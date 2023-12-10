@@ -66,6 +66,15 @@
                 Colors
               </nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                to="/orders"
+                class="py-4 px-2 flex gap-1 items-center hover:border-l hover:border-eucalyptus"
+              >
+                <IconsOrder class="w-6 h-6" />
+                Orders
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </aside>
