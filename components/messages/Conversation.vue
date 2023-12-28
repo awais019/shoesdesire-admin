@@ -40,8 +40,8 @@
     <div class="flex justify-between grow-[2]">
       <div class="flex flex-col justify-center w-full">
         <p class="font-semibold">
-          {{ conversation.Participant.first_name }}
-          {{ conversation.Participant.last_name }}
+          {{ conversation.Participant.firstName }}
+          {{ conversation.Participant.lastName }}
         </p>
         <div
           class="text-sm text-neutral-dusty-gray flex justify-between w-full"

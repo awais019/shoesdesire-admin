@@ -11,9 +11,8 @@ export type Conversation = {
   id: string;
   Participant: {
     id: string;
-    first_name: string;
-    last_name: string;
-    image: string;
+    firstName: string;
+    lastName: string;
   };
   Message: Message | null;
   unreadCount: number;
