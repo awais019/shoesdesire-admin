@@ -75,6 +75,15 @@
                 Orders
               </nuxt-link>
             </li>
+            <li>
+              <nuxt-link
+                to="/messages"
+                class="py-4 px-2 flex gap-1 items-center hover:border-l hover:border-eucalyptus"
+              >
+                <IconsMessages class="w-6 h-6" />
+                Messages
+              </nuxt-link>
+            </li>
           </ul>
         </nav>
       </aside>
